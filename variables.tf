@@ -1,26 +1,7 @@
-variable "aws_region" {
-  description = "The AWS region to create things in."
-  default     = "us-west-1"
-}
-
-# subnets to be uesed in web tier, provide by Farruh
-variable "web-subnets" {
-  description = "subnets used for web tier"
-  default     = "subnet-02246346e41f26b7b,subnet-0166320b56ea2c7c3"
-}
-
-
 
 # Amazon Linux 2 AMI 2.0.20200722.0 x86_64 HVM 8GB
 variable "aws_amis" {
-  default = {
-    "us-west-1" = "ami-05655c267c89566dd"
-  }
-}
-
-variable "availability_zones" {
-  default     = "us-west-1a,us-west-1b"
-  description = "List of availability zones that we will use in N California "
+  default = "ami-05655c267c89566dd"
 }
 
 variable "key_name" {
@@ -52,12 +33,7 @@ variable "asg_desired" {
 
 variable "alarms_sms" {
   description = "sms to use to send notifications"
-  default     = "+17033091494"
-}
-
-# for the purpose of validating NACLs, added VPC variable:
-variable "vpc_id" {
-  description = "the VPC that Farruh is creating"
+  default     = "+12026300504"
 }
 
 #Note - terraform doesnt support email as SNS requires validation
@@ -68,3 +44,11 @@ variable "vpc_id" {
 # description = "List of email addresses as string(space separated)"
 #  default = "rpaskalev@premieraquatics.com"
 #}
+
+# subnets to be uesed in web tier, provide by Farruh
+
+# for the purpose of validating NACLs, added VPC variable:
+
+#variable "web-sg-id" {
+ # description = "id of the security group for the web tier instances"
+  #default     = "${aws_security_group.web-tier-sg.id}"

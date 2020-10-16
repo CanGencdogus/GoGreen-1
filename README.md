@@ -1,5 +1,4 @@
 # GoGreen
-
 Web tier creation with the following services:
 SG
 ALB
@@ -11,3 +10,5 @@ s3 role
 s3 bucket   
 SNS topic
 Cloudwatch alarm with HTTP 400 errors trigger
+combined resources for app tier
+total of 58 resources

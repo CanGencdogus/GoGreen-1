@@ -1,13 +1,9 @@
 
 # for the purpose fo creating local code, added a VPC data:
 
-data "aws_vpc" "current-vpc" {
-  id = var.vpc_id
-}
-
 resource "aws_network_acl" "web-tier-nacl" {
-  vpc_id = "data.aws_vpc.current-vpc.id"
-  subnet_ids = split(",", var.web-subnets)
+  vpc_id = "${module.vpc.vpc-id}"
+  subnet_ids = "${module.vpc.public-subnet-ids}"
 
   egress {
     protocol   = "-1"
@@ -62,6 +58,15 @@ resource "aws_network_acl" "web-tier-nacl" {
     cidr_block = "0.0.0.0/0"
     from_port  = 3306
     to_port    = 3306
+  }
+
+      ingress {
+    protocol   = "tcp"
+    rule_no    = 600
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 32768
+    to_port    = 65535
   }
   tags = {
     Name = "web-tier-acl"
